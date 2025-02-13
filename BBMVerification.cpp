@@ -58,6 +58,8 @@ int main() {
     bool thermal_test = testThermalDiffusion();
     bool hydrology_test = testTerzaghiConsolidation();
     bool stress_test = testStressStrainConvergence();
+
+    std::cout << "Running the tests:" << std::endl;
     
     std::cout << "Thermal Diffusion Test: " << (thermal_test ? "PASSED" : "FAILED") << std::endl;
     std::cout << "Hydrology Test (Terzaghi): " << (hydrology_test ? "PASSED" : "FAILED") << std::endl;

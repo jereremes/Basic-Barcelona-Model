@@ -1,6 +1,7 @@
 {
     "version": "2.0.0",
     "configurations": [
+
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
@@ -12,7 +13,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/path/to/gdb.exe",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
