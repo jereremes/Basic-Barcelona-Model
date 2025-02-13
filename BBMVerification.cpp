@@ -6,14 +6,21 @@
 bool testThermalDiffusion() {
     MaterialProperties props = {0.1, 0.02, 0.08, 10.0, 1.2, 1.5, 900, 1e-6, 0.05};
     BarcelonaBasicModel bbm(props);
-    SoilState state = {100.0, 50.0, 20.0, 200.0, 298.0, 0.3};
+    SoilState state = {100.0, 50.0, 20.0, 200.0, 298.0, 0.3, 1800}; // Initialize density
     
     double dt = 0.01;
     double analytical_temperature = state.temperature;
     
     for (int step = 0; step < 100; ++step) {
         bbm.computeThermalConduction(state, dt, -5.0);
-        analytical_temperature -= (props.thermal_conductivity * 5.0 * dt / props.specific_heat);
+        double temperature_change = (props.thermal_conductivity * 5.0 * dt / props.specific_heat);
+        analytical_temperature -= temperature_change;
+        
+        // Detailed debug output
+        std::cout << "Step " << step << ": "
+                  << "State Temperature = " << state.temperature << ", "
+                  << "Analytical Temperature = " << analytical_temperature << ", "
+                  << "Temperature Change = " << temperature_change << std::endl;
     }
     
     return std::abs(state.temperature - analytical_temperature) < 1e-3;

@@ -26,6 +26,7 @@ struct SoilState {
     double preconsolidation_pressure;
     double temperature;
     double water_content;
+    double density;
 };
 
 // Barcelona Basic Model (BBM) Class

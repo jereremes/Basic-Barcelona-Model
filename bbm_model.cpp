@@ -25,12 +25,15 @@ void BarcelonaBasicModel::computeStressStrain(SoilState& state, double d_eps_v, 
 }
 
 void BarcelonaBasicModel::computeThermalConduction(SoilState& state, double dt, double thermal_gradient) {
-    // Fourier's law: q = -k * dT/dx, implicit update
+    // Fourier's law: q = -k * dT/dx
     double heat_flux = -properties.thermal_conductivity * thermal_gradient;
-    double inv_denominator = 1.0 / (1.0 + dt * properties.thermal_conductivity);
+    double temperature_change = heat_flux * dt / (properties.specific_heat * state.density);
     
-    // Optimized implicit time integration for temperature update
-    state.temperature = (state.temperature + dt * heat_flux / properties.specific_heat) * inv_denominator;
+    // Debug output
+    std::cout << "Heat Flux: " << heat_flux << ", Temperature Change: " << temperature_change << std::endl;
+    
+    // Update the temperature
+    state.temperature += temperature_change;
 }
 
 void BarcelonaBasicModel::computeHydrology(SoilState& state, double dt) {
