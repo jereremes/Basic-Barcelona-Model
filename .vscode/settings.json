@@ -1,5 +1,7 @@
 {
+
     "files.associations": {
+        "security.workspace.trust.enabled": true,
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
