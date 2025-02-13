@@ -8,9 +8,10 @@
             "args": [
                 "-g",
                 "${workspaceFolder}/bbm_model.cpp",
-                "${workspaceFolder}/BBMVerification.cpp",
+                "${workspaceFolder}/bbm_model_3D.cpp",
+                "${workspaceFolder}/BBMVerification3D.cpp",
                 "-o",
-                "${workspaceFolder}/BBMVerification.exe"
+                "${workspaceFolder}/BBMVerification3D.exe"
             ],
             "group": {
                 "kind": "build",

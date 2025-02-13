@@ -6,7 +6,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/BBMVerification.exe",
+            "program": "${workspaceFolder}/BBMVerification3D.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

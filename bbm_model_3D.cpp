@@ -32,6 +32,10 @@ void BarcelonaBasicModel::computeStressStrain(SoilState& state, const Eigen::Mat
     // Compute stress update using implicit formulation
     state.stress += dt * compliance_tensor * d_strain;
     state.suction += dt * d_suction;
+
+    // Debug output
+    std::cout << "Stress: \n" << state.stress << "\n";
+    std::cout << "Suction: " << state.suction << "\n";
 }
 
 void BarcelonaBasicModel::computeThermalConduction(SoilState& state, double dt, double thermal_gradient) {
@@ -41,6 +45,9 @@ void BarcelonaBasicModel::computeThermalConduction(SoilState& state, double dt, 
     
     // Optimized implicit time integration for temperature update
     state.temperature = (state.temperature + dt * heat_flux / properties.specific_heat) * inv_denominator;
+
+    // Debug output
+    std::cout << "Temperature: " << state.temperature << "\n";
 }
 
 void BarcelonaBasicModel::computeHydrology(SoilState& state, double dt) {
@@ -50,33 +57,7 @@ void BarcelonaBasicModel::computeHydrology(SoilState& state, double dt) {
     
     // Update water content implicitly
     state.water_content = (state.water_content + dt * water_flow) / (1 + dt * effective_permeability);
-}
 
-//int main() {
-//    // Define material properties
-//    MaterialProperties props = {0.1, 0.02, 0.08, 10.0, 1.2, 1.5, 900, 1e-6, 0.05};
-//    BarcelonaBasicModel bbm(props);
-    
-    // Initialize soil state
-//    SoilState state;
-//    state.stress = Eigen::Matrix3d::Zero();
-//    state.strain = Eigen::Matrix3d::Zero();
-//    state.suction = 20.0;
-//    state.preconsolidation_pressure = 200.0;
-//    state.temperature = 298.0;
-//    state.water_content = 0.3;
-    
-    // Time step loop
-//    double dt = 0.01;
-//    Eigen::Matrix3d d_strain = Eigen::Matrix3d::Identity() * -0.001;
-//    for (int step = 0; step < 100; ++step) {
-//        bbm.computeStressStrain(state, d_strain, -0.5, dt);
-//        bbm.computeThermalConduction(state, dt, -5.0);
-//        bbm.computeHydrology(state, dt);
-//    }
-    
-//    std::cout << "Final Mean Stress: " << state.stress.trace() / 3.0 << " kPa\n";
-//    std::cout << "Final Temperature: " << state.temperature << " K\n";
-//    std::cout << "Final Water Content: " << state.water_content << "\n";
-//    return 0;
-//}
+    // Debug output
+    std::cout << "Water Content: " << state.water_content << "\n";
+}

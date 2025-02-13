@@ -31,15 +31,15 @@ struct SoilState {
 
 // Barcelona Basic Model (BBM) Class
 class BarcelonaBasicModel {
-    public:
-        BarcelonaBasicModel(MaterialProperties props) : properties(props) {}
-        
-        void computeStressStrain(SoilState& state, const Eigen::Matrix3d& d_strain, double d_suction, double dt);
-        void computeThermalConduction(SoilState& state, double dt, double thermal_gradient);
-        void computeHydrology(SoilState& state, double dt);
-        
-    private:
-        MaterialProperties properties;
-    };
+public:
+    BarcelonaBasicModel(MaterialProperties props);
+    
+    void computeStressStrain(SoilState& state, const Eigen::Matrix3d& d_strain, double d_suction, double dt);
+    void computeThermalConduction(SoilState& state, double dt, double thermal_gradient);
+    void computeHydrology(SoilState& state, double dt);
+    
+private:
+    MaterialProperties properties;
+};
 
-    #endif // BBM_MODEL3D_H
+#endif // BBM_MODEL3D_H
